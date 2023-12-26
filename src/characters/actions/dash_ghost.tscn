@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://dngrbtwvf3msi"]
+
+[ext_resource type="Script" path="res://src/scripts/abilities/DashGhost.gd" id="1_0qryc"]
+[ext_resource type="Texture2D" uid="uid://40xk6rj3y4yl" path="res://icon.svg" id="1_ok6cn"]
+
+[sub_resource type="Shader" id="Shader_umlqs"]
+code = "shader_type canvas_item;
+
+uniform bool whiten = false;
+uniform float mix_weight = 1.0;
+
+void vertex() {
+	// Called for every vertex the material is visible on.
+}
+
+void fragment() {
+	vec4 texture_color = texture(TEXTURE, UV);
+	if (whiten) {
+		vec3 white = vec3(1,1,1);
+		vec3 whitened_texture_rgb = mix(texture_color.rgb, white, mix_weight);
+		COLOR = vec4(whitened_texture_rgb, COLOR.a);
+	} else {
+		COLOR = texture_color;
+	}
+	}
+
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vn5ik"]
+shader = SubResource("Shader_umlqs")
+shader_parameter/whiten = true
+shader_parameter/mix_weight = 1.0
+
+[node name="DashGhost" type="Sprite2D"]
+material = SubResource("ShaderMaterial_vn5ik")
+position = Vector2(500, 300)
+scale = Vector2(0.633, 0.633)
+texture = ExtResource("1_ok6cn")
+script = ExtResource("1_0qryc")

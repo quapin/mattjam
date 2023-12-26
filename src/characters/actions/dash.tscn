@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://b1fl2ahtkl6gm"]
+
+[ext_resource type="Script" path="res://src/scripts/abilities/Dash.gd" id="1_535oa"]
+[ext_resource type="Texture2D" uid="uid://b05yghu27osio" path="res://assets/dust.png" id="2_hjww7"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_i66ok"]
+particles_animation = true
+particles_anim_h_frames = 5
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_x68hw"]
+offsets = PackedFloat32Array(0, 0.987952)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_03x5v"]
+gradient = SubResource("Gradient_x68hw")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sgn1n"]
+lifetime_randomness = 0.7
+particle_flag_disable_z = true
+angle_min = -54.0
+angle_max = 54.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.8
+color_ramp = SubResource("GradientTexture1D_03x5v")
+
+[node name="Dash" type="Node2D"]
+z_index = -1
+script = ExtResource("1_535oa")
+
+[node name="DurationTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="GhostTimer" type="Timer" parent="."]
+wait_time = 0.02
+
+[node name="DustTrail" type="GPUParticles2D" parent="."]
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_i66ok")
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_sgn1n")
+texture = ExtResource("2_hjww7")
+lifetime = 1.2
+speed_scale = 2.95
+explosiveness = 0.8
+
+[connection signal="timeout" from="DurationTimer" to="." method="_on_duration_timer_timeout"]
+[connection signal="timeout" from="GhostTimer" to="." method="_on_ghost_timer_timeout"]
