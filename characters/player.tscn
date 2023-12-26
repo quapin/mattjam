@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://dv8lgv8a6m1tf"]
+
+[ext_resource type="Script" path="res://characters/player.gd" id="1_577k6"]
+[ext_resource type="Texture2D" uid="uid://40xk6rj3y4yl" path="res://icon.svg" id="2_sv6h4"]
+[ext_resource type="PackedScene" uid="uid://b1fl2ahtkl6gm" path="res://characters/actions/dash.tscn" id="3_x1q3s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t1lgl"]
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(500, 300)
+script = ExtResource("1_577k6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1.90735e-06, 1.90735e-06)
+scale = Vector2(0.632813, 0.632813)
+texture = ExtResource("2_sv6h4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_t1lgl")
+
+[node name="Dash" parent="." instance=ExtResource("3_x1q3s")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
