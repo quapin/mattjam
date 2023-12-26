@@ -1,9 +1,24 @@
-[gd_scene load_steps=5 format=3 uid="uid://b2p166oadhenp"]
+[gd_scene load_steps=8 format=3 uid="uid://b2p166oadhenp"]
 
 [ext_resource type="Script" path="res://src/scripts/mainMenu.gd" id="1_d45ex"]
 [ext_resource type="Texture2D" uid="uid://dn404uls3p4bp" path="res://assets/buttons/button64x25.png" id="2_tq75a"]
 [ext_resource type="Texture2D" uid="uid://cdj6wik3f0rgk" path="res://assets/buttons/buttonPressed.png" id="3_eo1j6"]
 [ext_resource type="Texture2D" uid="uid://b2hrlk2ir5e3g" path="res://assets/buttons/buttonHover.png" id="4_tmd1t"]
+[ext_resource type="FontFile" uid="uid://dtf6nlic4sbjs" path="res://assets/buttons/alagard.ttf" id="5_e8blt"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_em46g"]
+font = ExtResource("5_e8blt")
+font_size = 130
+shadow_size = 15
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(-4, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_6sofe"]
+font = ExtResource("5_e8blt")
+font_size = 130
+shadow_size = 15
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(-4, 1)
 
 [node name="Main Menu" type="Control"]
 layout_mode = 3
@@ -14,7 +29,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_d45ex")
 
-[node name="TextureButton" type="TextureButton" parent="."]
+[node name="StartButton" type="TextureButton" parent="."]
 layout_mode = 0
 offset_left = 304.0
 offset_top = 88.0
@@ -25,7 +40,16 @@ texture_pressed = ExtResource("3_eo1j6")
 texture_hover = ExtResource("4_tmd1t")
 stretch_mode = 0
 
-[node name="TextureButton2" type="TextureButton" parent="."]
+[node name="StartLabel" type="Label" parent="StartButton"]
+layout_mode = 0
+offset_left = 94.0
+offset_top = 22.0
+offset_right = 521.0
+offset_bottom = 164.0
+text = "Start"
+label_settings = SubResource("LabelSettings_em46g")
+
+[node name="QuitButton" type="TextureButton" parent="."]
 layout_mode = 0
 offset_left = 308.0
 offset_top = 377.0
@@ -35,3 +59,15 @@ texture_normal = ExtResource("2_tq75a")
 texture_pressed = ExtResource("3_eo1j6")
 texture_hover = ExtResource("4_tmd1t")
 stretch_mode = 0
+
+[node name="QuitLabel" type="Label" parent="QuitButton"]
+layout_mode = 0
+offset_left = 124.0
+offset_top = 33.0
+offset_right = 377.0
+offset_bottom = 156.0
+text = "Quit"
+label_settings = SubResource("LabelSettings_6sofe")
+
+[connection signal="button_up" from="StartButton" to="." method="_on_start_button_button_up"]
+[connection signal="button_up" from="QuitButton" to="." method="_on_quit_button_button_up"]
