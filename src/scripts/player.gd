@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 # Player Variables
-@export var move_speed = 400  # speed in pixels/sec
+@export var move_speed = 200 # speed in pixels/sec
 @export var dash_speed = 1800
 @export var dash_duration = 0.1
 
