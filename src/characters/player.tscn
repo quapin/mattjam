@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dv8lgv8a6m1tf"]
 
-[ext_resource type="Script" path="res://src/scripts/player.gd" id="1_577k6"]
+[ext_resource type="Script" path="res://src/scripts/entities/player.gd" id="1_t3a8o"]
 [ext_resource type="Texture2D" uid="uid://40xk6rj3y4yl" path="res://icon.svg" id="2_sv6h4"]
 [ext_resource type="PackedScene" uid="uid://b1fl2ahtkl6gm" path="res://src/characters/actions/dash.tscn" id="3_x1q3s"]
 
@@ -9,7 +9,7 @@ size = Vector2(75, 78.5)
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(500, 300)
-script = ExtResource("1_577k6")
+script = ExtResource("1_t3a8o")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(1.90735e-06, 1.90735e-06)
