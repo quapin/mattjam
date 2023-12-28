@@ -1,9 +1,10 @@
 extends CharacterBody2D
 
 # Player Variables
-@export var move_speed = 200 # speed in pixels/sec
+@export var move_speed = DefaultVariables.baseSpeed # speed in pixels/sec
 @export var dash_speed = 1800
 @export var dash_duration = 0.1
+@export var playerHealth = DefaultVariables.baseHealth
 
 # Node Call-ins
 @onready var dash = $Dash
@@ -15,7 +16,9 @@ extends CharacterBody2D
 @export var ninjaStar: PackedScene = preload("res://src/entites/ninja_star.tscn")
 
 
-# Dash Process
+func _ready():
+	upgrade()
+
 func _process(delta):
 	
 	if Input.is_action_just_pressed("dash") && dash.can_dash && !dash.is_dashing() :
@@ -33,7 +36,17 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("shoot") and attackTimer.is_stopped():
 		var starDirection = self.global_position.direction_to(get_global_mouse_position())
 		throwStar(starDirection)
-		
+	
+	
+	# Test code for upgrades
+	if Input.is_action_just_pressed("Select"):
+		if UpgradesScript.speedUpgrade >= UpgradesScript.maxSpeedUpgrade:
+			print("You're at max speed")
+		else:
+			UpgradesScript.speedUpgrade += 1
+			upgrade()
+			print(playerHealth)
+			print(move_speed)
 		
 	# Match player sprite with direction and animations
 	if velocity.x < 0:
@@ -59,3 +72,32 @@ func throwStar(starDirection: Vector2):
 		
 		attackTimer.start()
 	
+
+
+# Function for upgrading stats
+func upgrade():
+	
+	match UpgradesScript.healthUpgrade:
+		1: 
+			playerHealth = playerHealth + 1
+		2: 
+			playerHealth = playerHealth + 1
+		3: 
+			playerHealth = playerHealth + 1
+		4: 
+			playerHealth = playerHealth + 1
+		5: 
+			playerHealth = playerHealth + 1
+		
+	match UpgradesScript.speedUpgrade:
+		1: 
+			move_speed = move_speed + 20
+		2: 
+			move_speed = move_speed + 20
+		3: 
+			move_speed = move_speed + 20
+		4: 
+			move_speed = move_speed + 20
+		5: 
+			move_speed = move_speed + 20
+		

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bvh434qqaok0m"]
 
 [ext_resource type="Script" path="res://src/scripts/abilities/NinjaStar.gd" id="1_10lvo"]
-[ext_resource type="Texture2D" uid="uid://40xk6rj3y4yl" path="res://icon.svg" id="2_bexoe"]
+[ext_resource type="Texture2D" uid="uid://bg8p5846juap2" path="res://assets/Viking.png" id="2_2j6jk"]
 [ext_resource type="Script" path="res://src/scripts/abilities/ninjaStarTest.gd" id="3_0wxpp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g8vt1"]
@@ -14,8 +14,8 @@ script = ExtResource("1_10lvo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(5.96046e-08, 0)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("2_bexoe")
+scale = Vector2(2, 2)
+texture = ExtResource("2_2j6jk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_g8vt1")

@@ -7,7 +7,6 @@ const dash_delay = 0.2
 @onready var dust_trail = $DustTrail
 
 var ghost_scene = preload("res://src/characters/actions/dash_ghost.tscn")
-var can_dash = true
 var sprite
 
 func start_dash(sprite, duration):
@@ -47,9 +46,9 @@ func is_dashing():
 func end_dash():
 	$GhostTimer.stop()
 	
-	can_dash = false
+	DefaultVariables.canDash = false
 	await(get_tree().create_timer(dash_delay).timeout)
-	can_dash = true
+	DefaultVariables.canDash = true
 
 
 func _on_duration_timer_timeout() -> void:

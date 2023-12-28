@@ -4,6 +4,7 @@ var labelStart = LabelSettings.new()
 var labelQuit = LabelSettings.new()
 var font = load("res://assets/buttons/alagard.ttf")
 
+# When the main menu scene starts up
 func _ready():
 	labelStart.set_font_color(Color.WHITE)
 	labelStart.set_font(font)
