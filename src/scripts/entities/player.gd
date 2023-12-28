@@ -73,7 +73,7 @@ func throwStar(starDirection: Vector2):
 		attackTimer.start()
 	
 
-
+	
 # Function for upgrading stats
 func upgrade():
 	
