@@ -173,4 +173,5 @@ func _on_h_slider_value_changed(value):
 	var resolutionText = str(round(get_window().get_size().x * resolutionScale)) + " x " + str(round(get_window().get_size().y * resolutionScale))
 	
 	scaleLabel.set_text(str(value) + "% - " + resolutionText)
-	get_viewport().set_scaling_2d_scale(resolutionScale)
+	
+	
