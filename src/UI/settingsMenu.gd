@@ -1,5 +1,7 @@
 extends Control
 
+class_name Settings
+
 
 @onready var buttonScene = preload("res://src/input/inputButton.tscn")
 @onready var actionList = $TabContainer/Controls/MarginContainer/VBoxContainer/ScrollContainer/ActionList 
@@ -7,6 +9,7 @@ extends Control
 var isRemapping = false
 var actionRemapping = null
 var keyRemapping = null
+var settingsClosed = true
 
 var inputActions = {
 	"up": "Move Up",
@@ -72,3 +75,12 @@ func _update_action_list(button, event):
 
 func _on_defaults_button_pressed():
 	_create_action_list()
+
+
+
+
+
+func _on_exit_pressed():
+	hide()
+	$TabContainer.current_tab = 0
+	settingsClosed = true

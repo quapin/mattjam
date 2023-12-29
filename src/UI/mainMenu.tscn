@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://b2p166oadhenp"]
+[gd_scene load_steps=52 format=3 uid="uid://b2p166oadhenp"]
 
 [ext_resource type="Script" path="res://src/scripts/UI/mainMenu.gd" id="1_d45ex"]
 [ext_resource type="Texture2D" uid="uid://bhweaa6c0und8" path="res://assets/MainMenu/MainMenuBackground1.png" id="2_dkjpy"]
@@ -44,6 +44,10 @@
 [ext_resource type="Texture2D" uid="uid://blltlwqkpabgc" path="res://assets/MainMenu/MainMenuBackground37.png" id="38_ftunv"]
 [ext_resource type="Texture2D" uid="uid://7j8wrueabfwm" path="res://assets/MainMenu/MainMenuBackground38.png" id="39_wsm33"]
 [ext_resource type="Texture2D" uid="uid://dvrnnrtstfhd7" path="res://assets/MainMenu/MainMenuBackground39.png" id="40_311lv"]
+[ext_resource type="Texture2D" uid="uid://dx33kro8pj24y" path="res://assets/buttons/SettingsButton.png" id="45_8m86b"]
+[ext_resource type="PackedScene" uid="uid://b17lp1f8e7tws" path="res://src/UI/settingsMenu.tscn" id="45_r475f"]
+[ext_resource type="Texture2D" uid="uid://b3br5je3manqs" path="res://assets/buttons/SettingsButtonPressed.png" id="46_15y2q"]
+[ext_resource type="Texture2D" uid="uid://dsms7k40hljmc" path="res://assets/buttons/SettingsButtonHover.png" id="47_ryo24"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0auq7"]
 animations = [{
@@ -203,10 +207,10 @@ frame_progress = 0.347077
 
 [node name="StartButton" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 324.0
+offset_left = 328.0
 offset_top = 88.0
-offset_right = 821.0
-offset_bottom = 275.0
+offset_right = 825.0
+offset_bottom = 282.0
 texture_normal = ExtResource("2_tq75a")
 texture_pressed = ExtResource("3_eo1j6")
 texture_hover = ExtResource("4_tmd1t")
@@ -214,10 +218,10 @@ stretch_mode = 0
 
 [node name="StartLabel" type="Label" parent="StartButton"]
 layout_mode = 0
-offset_left = 9.0
-offset_top = 1.0
-offset_right = 490.0
-offset_bottom = 156.0
+offset_left = 8.0
+offset_top = 6.0
+offset_right = 489.0
+offset_bottom = 161.0
 mouse_filter = 1
 text = "Start"
 label_settings = SubResource("LabelSettings_em46g")
@@ -247,10 +251,42 @@ label_settings = SubResource("LabelSettings_6sofe")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureButton" type="TextureButton" parent="."]
+[node name="SettingsButton" type="TextureButton" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 972.0
+offset_top = 335.0
+offset_right = 1080.0
+offset_bottom = 437.0
+texture_normal = ExtResource("45_8m86b")
+texture_pressed = ExtResource("46_15y2q")
+texture_hover = ExtResource("47_ryo24")
+stretch_mode = 5
+
+[node name="SettingsLabel" type="Label" parent="SettingsButton"]
+layout_mode = 0
+offset_left = -19.0
+offset_top = -25.0
+offset_right = 221.0
+offset_bottom = 35.0
+theme_override_fonts/font = ExtResource("5_e8blt")
+theme_override_font_sizes/font_size = 40
+text = "Settings"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -13.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="SettingsMenu" parent="ColorRect" instance=ExtResource("45_r475f")]
+layout_mode = 1
+offset_left = 3.0
+offset_right = 3.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(577, 325)
@@ -264,3 +300,5 @@ editor_draw_drag_margin = true
 [connection signal="mouse_exited" from="QuitButton" to="." method="_on_quit_button_mouse_exited"]
 [connection signal="mouse_entered" from="QuitButton/QuitLabel" to="." method="_on_quit_label_mouse_entered"]
 [connection signal="mouse_exited" from="QuitButton/QuitLabel" to="." method="_on_quit_label_mouse_exited"]
+[connection signal="pressed" from="SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="hidden" from="ColorRect/SettingsMenu" to="." method="_on_settings_menu_hidden"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b17lp1f8e7tws"]
+[gd_scene load_steps=10 format=3 uid="uid://b17lp1f8e7tws"]
 
 [ext_resource type="Script" path="res://src/UI/settingsMenu.gd" id="1_flsxj"]
 [ext_resource type="PackedScene" uid="uid://htvvnucwbhja" path="res://src/input/inputButton.tscn" id="2_7cqap"]
@@ -19,6 +19,9 @@ bg_color = Color(1, 1, 1, 0.392157)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fovqp"]
 bg_color = Color(0.6, 0.6, 0.6, 0.392157)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lko2i"]
+bg_color = Color(0.372549, 0.113725, 0.0745098, 1)
 
 [node name="SettingsMenu" type="Control"]
 layout_mode = 3
@@ -44,11 +47,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("3_1nai0")
 theme_override_font_sizes/font_size = 32
-current_tab = 3
 clip_tabs = false
 
 [node name="General" type="TabBar" parent="TabContainer"]
-visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="TabContainer/General"]
@@ -75,6 +76,7 @@ visible = false
 layout_mode = 2
 
 [node name="Controls" type="TabBar" parent="TabContainer"]
+visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_1nai0")
 
@@ -152,4 +154,17 @@ theme_override_fonts/font = ExtResource("3_1nai0")
 theme_override_font_sizes/font_size = 30
 text = "Reset to defaults"
 
+[node name="Exit" type="Button" parent="."]
+layout_mode = 0
+offset_left = 823.0
+offset_top = 60.0
+offset_right = 921.0
+offset_bottom = 100.0
+theme_override_fonts/font = ExtResource("3_1nai0")
+theme_override_font_sizes/font_size = 34
+theme_override_styles/normal = SubResource("StyleBoxFlat_lko2i")
+text = "Exit
+"
+
 [connection signal="pressed" from="TabContainer/Controls/MarginContainer/VBoxContainer/DefaultsButton" to="." method="_on_defaults_button_pressed"]
+[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]

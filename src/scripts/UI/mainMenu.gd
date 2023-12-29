@@ -2,7 +2,8 @@ extends Control
 
 var labelStart = LabelSettings.new()
 var labelQuit = LabelSettings.new()
-var font = load("res://assets/buttons/alagard.ttf")
+var font = load("res://assets/alagard.ttf")
+var settingsShow = false
 
 # When the main menu scene starts up
 func _ready():
@@ -21,6 +22,7 @@ func _ready():
 	labelQuit.set_shadow_color(Color.BLACK)
 	labelQuit.set_shadow_offset(Vector2(-4, 1))
 	$QuitButton/QuitLabel.label_settings = labelQuit
+	
 	
 # When Start Button gets released
 func _on_start_button_button_up():
@@ -55,3 +57,13 @@ func _on_quit_label_mouse_exited():
 	labelQuit.set_shadow_offset(Vector2(-4, 1))
 	
 
+func _on_settings_button_pressed():
+	if !settingsShow:
+		$ColorRect.show()
+		$ColorRect/SettingsMenu.show()
+	settingsShow = true
+
+
+func _on_settings_menu_hidden():
+	settingsShow = false
+	$ColorRect.hide()
