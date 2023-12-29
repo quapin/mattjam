@@ -10,4 +10,4 @@ extends Node
 @export var maxSpeedUpgrade = 5
 @export var maxAttackSpeedUpgrade = 5
 
-			
+

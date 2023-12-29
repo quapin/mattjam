@@ -5,11 +5,33 @@ class_name Settings
 
 @onready var buttonScene = preload("res://src/input/inputButton.tscn")
 @onready var actionList = $TabContainer/Controls/MarginContainer/VBoxContainer/ScrollContainer/ActionList 
+@onready var windowModeButton = $TabContainer/Video/MarginContainer/ScrollContainer/VBoxContainer/WindowModeButton/HBoxContainer/OptionButton
+@onready var resolutionModeButton = $TabContainer/Video/MarginContainer/ScrollContainer/VBoxContainer/ResolutionModeButton/HBoxContainer/OptionButton
+@onready var scaleLabel = $TabContainer/Video/MarginContainer/ScrollContainer/VBoxContainer/ResolutionModeButton/ScaleSlider/ScaleLabel
+@onready var scaleSlider = $TabContainer/Video/MarginContainer/ScrollContainer/VBoxContainer/ResolutionModeButton/ScaleSlider
+
+
+
+const windowModeArray : Array[String] = [
+	"Windowed",
+	"Full Screen",
+	"Boarderless Window",
+]
+
+const resolutionDictionary : Dictionary = {
+	"640 x 360" : Vector2i(640, 360),
+	"1280 x 720" : Vector2i(1280, 720),
+	"1600 x 900" : Vector2i(1600, 900),
+	"1920 x 1080" : Vector2i(1920, 1080),
+	"2560 x 1440" : Vector2i(2560, 1440),
+	"3840 x 2160" : Vector2i(3840, 2160)
+}
 
 var isRemapping = false
 var actionRemapping = null
 var keyRemapping = null
 var settingsClosed = true
+
 
 var inputActions = {
 	"up": "Move Up",
@@ -22,7 +44,66 @@ var inputActions = {
 }
 
 func _ready():
+	addWindowModeItems()
+	addResolutionItems()
 	_create_action_list()
+	checkVars()
+	set_process(false)
+	windowModeButton.item_selected.connect(onWindowModeSelected)
+	resolutionModeButton.item_selected.connect(onResolutionSelected)
+
+func checkVars():
+	var window = get_window()
+	var mode = window.get_mode()
+	
+	if mode == Window.MODE_EXCLUSIVE_FULLSCREEN:
+		windowModeButton.select(1)
+
+func setResoultionText():
+	var resolutionText = str(get_window().get_size().x) + " x " + str(get_window().get_size().y)
+	resolutionModeButton.set_text(resolutionText)
+
+func addWindowModeItems():
+		for windowMode in windowModeArray:
+			windowModeButton.add_item(windowMode)
+	
+func onWindowModeSelected(index : int):
+	match index:
+		0: # Windowed
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
+			DisplayServer.window_set_size(Vector2i(1280, 720))
+		1: # FullScreen
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
+			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
+		2: # Borderless Window
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, true)
+	setResoultionText()
+	centerWindow()
+	
+func addResolutionItems():
+	var currentResolution = get_window().get_size()
+	var ID = 0
+	
+	for resolution in resolutionDictionary:
+		resolutionModeButton.add_item(resolution, ID)
+		
+		if resolutionDictionary[resolution] == currentResolution:
+			resolutionModeButton.select(ID)
+			
+		ID += 1
+
+func onResolutionSelected(index: int):
+	DisplayServer.window_set_size(resolutionDictionary.values()[index])
+	centerWindow()
+	#var ID = resolutionModeButton.get_item_text(index)
+	#get_window().set_size(resolutionDictionary[ID])
+
+func centerWindow():
+	var centerScreen = DisplayServer.screen_get_position() + DisplayServer.screen_get_size() / 2
+	var windowSize = get_window().get_size_with_decorations()
+	get_window().set_position(centerScreen - windowSize / 2)
 	
 func _create_action_list():
 	InputMap.load_from_project_settings()
@@ -84,3 +165,12 @@ func _on_exit_pressed():
 	hide()
 	$TabContainer.current_tab = 0
 	settingsClosed = true
+	set_process(false)
+
+
+func _on_h_slider_value_changed(value):
+	var resolutionScale = value/100.0
+	var resolutionText = str(round(get_window().get_size().x * resolutionScale)) + " x " + str(round(get_window().get_size().y * resolutionScale))
+	
+	scaleLabel.set_text(str(value) + "% - " + resolutionText)
+	get_viewport().set_scaling_2d_scale(resolutionScale)

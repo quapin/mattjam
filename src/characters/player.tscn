@@ -8,16 +8,14 @@
 size = Vector2(61, 91)
 
 [node name="Player" type="CharacterBody2D"]
-position = Vector2(500, 300)
+position = Vector2(289, 224)
 script = ExtResource("1_t3a8o")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(1.90735e-06, 1.90735e-06)
-scale = Vector2(3, 3)
+scale = Vector2(3.03125, 3.04167)
 texture = ExtResource("2_l63u2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, -9.5)
 shape = SubResource("RectangleShape2D_t1lgl")
 
 [node name="Dash" parent="." instance=ExtResource("3_x1q3s")]

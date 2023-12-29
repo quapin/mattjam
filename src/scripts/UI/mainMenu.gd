@@ -62,8 +62,10 @@ func _on_settings_button_pressed():
 		$ColorRect.show()
 		$ColorRect/SettingsMenu.show()
 	settingsShow = true
+	$ColorRect/SettingsMenu.set_process(true)
 
 
 func _on_settings_menu_hidden():
 	settingsShow = false
 	$ColorRect.hide()
+	$ColorRect/SettingsMenu.set_process(false)

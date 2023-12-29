@@ -176,15 +176,15 @@ animations = [{
 
 [sub_resource type="LabelSettings" id="LabelSettings_em46g"]
 font = ExtResource("5_e8blt")
-font_size = 130
-shadow_size = 15
+font_size = 60
+shadow_size = 4
 shadow_color = Color(0, 0, 0, 1)
 shadow_offset = Vector2(-4, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_6sofe"]
 font = ExtResource("5_e8blt")
-font_size = 130
-shadow_size = 15
+font_size = 60
+shadow_size = 4
 shadow_color = Color(0, 0, 0, 1)
 shadow_offset = Vector2(-4, 1)
 
@@ -199,18 +199,22 @@ mouse_force_pass_scroll_events = false
 script = ExtResource("1_d45ex")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(574, 320.555)
-scale = Vector2(0.612067, 0.613788)
+position = Vector2(320.552, 180)
+scale = Vector2(0.331717, 0.333333)
 sprite_frames = SubResource("SpriteFrames_0auq7")
 autoplay = "default"
 frame_progress = 0.347077
 
 [node name="StartButton" type="TextureButton" parent="."]
-layout_mode = 0
-offset_left = 328.0
-offset_top = 88.0
-offset_right = 825.0
-offset_bottom = 282.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -262.0
+offset_top = 49.0
+offset_right = -39.0
+offset_bottom = 136.0
+grow_horizontal = 2
 texture_normal = ExtResource("2_tq75a")
 texture_pressed = ExtResource("3_eo1j6")
 texture_hover = ExtResource("4_tmd1t")
@@ -219,9 +223,9 @@ stretch_mode = 0
 [node name="StartLabel" type="Label" parent="StartButton"]
 layout_mode = 0
 offset_left = 8.0
-offset_top = 6.0
-offset_right = 489.0
-offset_bottom = 161.0
+offset_top = -3.0
+offset_right = 222.0
+offset_bottom = 78.0
 mouse_filter = 1
 text = "Start"
 label_settings = SubResource("LabelSettings_em46g")
@@ -229,11 +233,18 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="QuitButton" type="TextureButton" parent="."]
-layout_mode = 0
-offset_left = 328.0
-offset_top = 443.0
-offset_right = 825.0
-offset_bottom = 637.0
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 42.0
+offset_top = -87.0
+offset_right = 256.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 0
 texture_normal = ExtResource("2_tq75a")
 texture_pressed = ExtResource("3_eo1j6")
 texture_hover = ExtResource("4_tmd1t")
@@ -241,10 +252,10 @@ stretch_mode = 0
 
 [node name="QuitLabel" type="Label" parent="QuitButton"]
 layout_mode = 0
-offset_left = 7.0
-offset_top = 7.0
-offset_right = 489.0
-offset_bottom = 161.0
+offset_left = 14.0
+offset_top = 3.0
+offset_right = 200.0
+offset_bottom = 69.0
 mouse_filter = 1
 text = "Quit"
 label_settings = SubResource("LabelSettings_6sofe")
@@ -252,11 +263,18 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="SettingsButton" type="TextureButton" parent="."]
-layout_mode = 0
-offset_left = 972.0
-offset_top = 335.0
-offset_right = 1080.0
-offset_bottom = 437.0
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -131.0
+offset_top = -38.0
+offset_right = -23.0
+offset_bottom = 64.0
+grow_horizontal = 0
+grow_vertical = 2
 texture_normal = ExtResource("45_8m86b")
 texture_pressed = ExtResource("46_15y2q")
 texture_hover = ExtResource("47_ryo24")
@@ -264,10 +282,14 @@ stretch_mode = 5
 
 [node name="SettingsLabel" type="Label" parent="SettingsButton"]
 layout_mode = 0
-offset_left = -19.0
-offset_top = -25.0
-offset_right = 221.0
-offset_bottom = 35.0
+offset_left = -20.0
+offset_top = -5.0
+offset_right = 220.0
+offset_bottom = 55.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/shadow_outline_size = 5
 theme_override_fonts/font = ExtResource("5_e8blt")
 theme_override_font_sizes/font_size = 40
 text = "Settings"
@@ -285,13 +307,9 @@ color = Color(0, 0, 0, 1)
 
 [node name="SettingsMenu" parent="ColorRect" instance=ExtResource("45_r475f")]
 layout_mode = 1
-offset_left = 3.0
-offset_right = 3.0
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(577, 325)
-editor_draw_limits = true
-editor_draw_drag_margin = true
+offset_top = -11.0
+offset_right = 10.0
+offset_bottom = 4.0
 
 [connection signal="button_up" from="StartButton" to="." method="_on_start_button_button_up"]
 [connection signal="mouse_entered" from="StartButton/StartLabel" to="." method="_on_start_label_mouse_entered"]

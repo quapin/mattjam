@@ -39,17 +39,19 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -361.0
-offset_top = -264.0
-offset_right = 345.0
-offset_bottom = 224.0
+offset_left = -237.0
+offset_top = -151.0
+offset_right = 247.0
+offset_bottom = 157.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("3_1nai0")
 theme_override_font_sizes/font_size = 32
+current_tab = 1
 clip_tabs = false
 
 [node name="General" type="TabBar" parent="TabContainer"]
+visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="TabContainer/General"]
@@ -68,7 +70,150 @@ layout_mode = 2
 shortcut = SubResource("Shortcut_xy2r1")
 
 [node name="Video" type="TabBar" parent="TabContainer"]
-visible = false
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Video"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -35.0
+offset_right = -436.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Video/MarginContainer"]
+clip_contents = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Video/MarginContainer/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="WindowModeButton" type="Control" parent="TabContainer/Video/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Video/MarginContainer/ScrollContainer/VBoxContainer/WindowModeButton"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = -1.0
+offset_right = 424.0
+offset_bottom = 29.0
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="TabContainer/Video/MarginContainer/ScrollContainer/VBoxContainer/WindowModeButton/HBoxContainer"]
+clip_contents = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_1nai0")
+theme_override_font_sizes/font_size = 30
+text = "Window Mode"
+vertical_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="TabContainer/Video/MarginContainer/ScrollContainer/VBoxContainer/WindowModeButton/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 56
+
+[node name="OptionButton" type="OptionButton" parent="TabContainer/Video/MarginContainer/ScrollContainer/VBoxContainer/WindowModeButton/HBoxContainer"]
+custom_minimum_size = Vector2(150, 30)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_1nai0")
+theme_override_font_sizes/font_size = 20
+
+[node name="ResolutionModeButton" type="Control" parent="TabContainer/Video/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Video/MarginContainer/ScrollContainer/VBoxContainer/ResolutionModeButton"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = 6.0
+offset_right = 426.0
+offset_bottom = 36.0
+grow_vertical = 2
+theme_override_constants/separation = 65
+
+[node name="Label" type="Label" parent="TabContainer/Video/MarginContainer/ScrollContainer/VBoxContainer/ResolutionModeButton/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_1nai0")
+theme_override_font_sizes/font_size = 30
+text = "Resolution"
+vertical_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="TabContainer/Video/MarginContainer/ScrollContainer/VBoxContainer/ResolutionModeButton/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="OptionButton" type="OptionButton" parent="TabContainer/Video/MarginContainer/ScrollContainer/VBoxContainer/ResolutionModeButton/HBoxContainer"]
+custom_minimum_size = Vector2(150, 30)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_1nai0")
+theme_override_font_sizes/font_size = 20
+
+[node name="ScaleSlider" type="HSlider" parent="TabContainer/Video/MarginContainer/ScrollContainer/VBoxContainer/ResolutionModeButton"]
+layout_mode = 0
+offset_left = 276.0
+offset_top = 35.0
+offset_right = 426.0
+offset_bottom = 51.0
+min_value = 50.0
+max_value = 200.0
+step = 5.0
+value = 100.0
+ticks_on_borders = true
+
+[node name="ScaleLabel" type="Label" parent="TabContainer/Video/MarginContainer/ScrollContainer/VBoxContainer/ResolutionModeButton/ScaleSlider"]
+layout_mode = 0
+offset_top = 12.0
+offset_right = 152.0
+offset_bottom = 35.0
+theme_override_fonts/font = ExtResource("3_1nai0")
+theme_override_font_sizes/font_size = 20
+text = "100% - 1920x1080"
+
+[node name="SettingsTab" type="Control" parent="TabContainer/Video/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Video/MarginContainer/ScrollContainer/VBoxContainer/SettingsTab"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -6.0
+offset_top = 14.0
+offset_right = 500.0
+offset_bottom = 44.0
+grow_vertical = 2
+theme_override_constants/separation = 53
+
+[node name="Label" type="Label" parent="TabContainer/Video/MarginContainer/ScrollContainer/VBoxContainer/SettingsTab/HBoxContainer"]
+clip_contents = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_1nai0")
+theme_override_font_sizes/font_size = 30
+text = "BASE_LABEL"
+vertical_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="TabContainer/Video/MarginContainer/ScrollContainer/VBoxContainer/SettingsTab/HBoxContainer"]
+layout_mode = 2
+
+[node name="OptionButton" type="OptionButton" parent="TabContainer/Video/MarginContainer/ScrollContainer/VBoxContainer/SettingsTab/HBoxContainer"]
+custom_minimum_size = Vector2(150, 30)
 layout_mode = 2
 
 [node name="Audio" type="TabBar" parent="TabContainer"]
@@ -102,6 +247,7 @@ size_flags_vertical = 3
 [node name="ActionList" type="VBoxContainer" parent="TabContainer/Controls/MarginContainer/VBoxContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/separation = 10
 
 [node name="InputButton" parent="TabContainer/Controls/MarginContainer/VBoxContainer/ScrollContainer/ActionList" instance=ExtResource("2_7cqap")]
 layout_mode = 2
@@ -156,15 +302,16 @@ text = "Reset to defaults"
 
 [node name="Exit" type="Button" parent="."]
 layout_mode = 0
-offset_left = 823.0
-offset_top = 60.0
-offset_right = 921.0
-offset_bottom = 100.0
+offset_left = 486.0
+offset_top = 304.0
+offset_right = 567.0
+offset_bottom = 337.0
 theme_override_fonts/font = ExtResource("3_1nai0")
 theme_override_font_sizes/font_size = 34
 theme_override_styles/normal = SubResource("StyleBoxFlat_lko2i")
 text = "Exit
 "
 
+[connection signal="value_changed" from="TabContainer/Video/MarginContainer/ScrollContainer/VBoxContainer/ResolutionModeButton/ScaleSlider" to="." method="_on_h_slider_value_changed"]
 [connection signal="pressed" from="TabContainer/Controls/MarginContainer/VBoxContainer/DefaultsButton" to="." method="_on_defaults_button_pressed"]
 [connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]

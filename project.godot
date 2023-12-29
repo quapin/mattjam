@@ -28,8 +28,13 @@ UpgradesScript="*res://src/scripts/upgradesScript.gd"
 
 [display]
 
-window/stretch/mode="canvas_items"
+window/size/viewport_width=640
+window/size/viewport_height=360
+window/size/mode=3
+window/size/resizable=false
+window/stretch/mode="viewport"
 window/stretch/aspect="expand"
+window/stretch/scale_mode="integer"
 
 [input]
 
