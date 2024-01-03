@@ -3,7 +3,7 @@ extends Node2D
 
 # Testing code for different ninja star loading
 
-var ninjaStar = load("res://src/entites/ninja_star.tscn")
+var ninjaStar = load("res://src/weapons/ninja_star.tscn")
 @onready var aimPosition = null
 @onready var selfPosition = null
 

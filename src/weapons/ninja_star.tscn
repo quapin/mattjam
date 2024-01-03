@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://bvh434qqaok0m"]
 
-[ext_resource type="Script" path="res://src/scripts/abilities/NinjaStar.gd" id="1_10lvo"]
-[ext_resource type="Texture2D" uid="uid://bg8p5846juap2" path="res://assets/Viking.png" id="2_2j6jk"]
-[ext_resource type="Script" path="res://src/scripts/abilities/ninjaStarTest.gd" id="3_0wxpp"]
+[ext_resource type="Script" path="res://src/scripts/abilities/NinjaStar.gd" id="1_7r4ao"]
+[ext_resource type="Texture2D" uid="uid://bg8p5846juap2" path="res://assets/Viking.png" id="2_dvhgp"]
+[ext_resource type="Script" path="res://src/scripts/abilities/ninjaStarTest.gd" id="3_x2ff6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g8vt1"]
 size = Vector2(23.625, 24.5625)
@@ -10,12 +10,12 @@ size = Vector2(23.625, 24.5625)
 [node name="NinjaStar" type="Area2D"]
 collision_layer = 2
 collision_mask = 2
-script = ExtResource("1_10lvo")
+script = ExtResource("1_7r4ao")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(5.96046e-08, 0)
 scale = Vector2(2, 2)
-texture = ExtResource("2_2j6jk")
+texture = ExtResource("2_dvhgp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_g8vt1")
@@ -28,7 +28,7 @@ one_shot = true
 autostart = true
 
 [node name="ninjaStarTest" type="Node2D" parent="."]
-script = ExtResource("3_0wxpp")
+script = ExtResource("3_x2ff6")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

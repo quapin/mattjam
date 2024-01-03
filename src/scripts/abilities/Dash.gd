@@ -6,7 +6,7 @@ const dash_delay = 0.2
 @onready var ghost_timer = $GhostTimer
 @onready var dust_trail = $DustTrail
 
-var ghost_scene = preload("res://src/characters/actions/dash_ghost.tscn")
+var ghost_scene = preload("res://src/entities/actions/dash_ghost.tscn")
 var sprite
 
 func start_dash(sprite, duration):

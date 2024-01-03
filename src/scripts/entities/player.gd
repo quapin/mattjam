@@ -13,7 +13,7 @@ extends CharacterBody2D
 @onready var attackTimer = $AttackTimer
 
 # Attack Call-ins
-@export var ninjaStar: PackedScene = preload("res://src/entites/ninja_star.tscn")
+@export var ninjaStar: PackedScene = preload("res://src/weapons/ninja_star.tscn")
 
 
 func _ready():
