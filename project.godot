@@ -23,17 +23,22 @@ aseprite_executable_path="C:/Program Files (x86)/Steam/steamapps/common/Aseprite
 
 [autoload]
 
-DefaultVariables="*res://src/scripts/defaultVariables.gd"
-UpgradesScript="*res://src/scripts/upgradesScript.gd"
+UpgradesScript="*res://src/scripts/globals/upgradesScript.gd"
+SettingsDataContainer="*res://src/scripts/globals/SettingsDataContainer.gd"
+SettingsSignals="*res://src/scripts/globals/SettingsSignals.gd"
+SaveManager="*res://src/scripts/globals/SaveManager.gd"
+PlayerDataContainer="*res://src/scripts/globals/PlayerDataContainer.gd"
+PlayerSaveManager="*res://src/scripts/globals/PlayerSaveManager.gd"
+PlayerSignals="*res://src/scripts/globals/PlayerSignals.gd"
 
 [display]
 
 window/size/viewport_width=640
 window/size/viewport_height=360
-window/size/mode=4
 window/size/resizable=false
 window/stretch/mode="viewport"
-window/stretch/scale_mode="integer"
+window/stretch/aspect="expand"
+mouse_cursor/custom_image="res://assets/mouse.png"
 
 [input]
 

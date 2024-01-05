@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="PlayerKeybindResource" load_steps=2 format=3 uid="uid://cunhjbig4kjis"]
+
+[ext_resource type="Script" path="res://src/resources/settings/PlayerKeybindResource.gd" id="1_bw1q1"]
+
+[resource]
+script = ExtResource("1_bw1q1")

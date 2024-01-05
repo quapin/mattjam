@@ -257,6 +257,48 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_xkag2")
 theme_override_styles/hover = SubResource("StyleBoxFlat_o36jw")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_fovqp")
 
+[node name="InputButton2" parent="TabContainer/Controls/MarginContainer/VBoxContainer/ScrollContainer/ActionList" instance=ExtResource("2_7cqap")]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_xkag2")
+theme_override_styles/hover = SubResource("StyleBoxFlat_o36jw")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_fovqp")
+
+[node name="InputButton3" parent="TabContainer/Controls/MarginContainer/VBoxContainer/ScrollContainer/ActionList" instance=ExtResource("2_7cqap")]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_xkag2")
+theme_override_styles/hover = SubResource("StyleBoxFlat_o36jw")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_fovqp")
+
+[node name="InputButton4" parent="TabContainer/Controls/MarginContainer/VBoxContainer/ScrollContainer/ActionList" instance=ExtResource("2_7cqap")]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_xkag2")
+theme_override_styles/hover = SubResource("StyleBoxFlat_o36jw")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_fovqp")
+
+[node name="InputButton5" parent="TabContainer/Controls/MarginContainer/VBoxContainer/ScrollContainer/ActionList" instance=ExtResource("2_7cqap")]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_xkag2")
+theme_override_styles/hover = SubResource("StyleBoxFlat_o36jw")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_fovqp")
+
+[node name="InputButton6" parent="TabContainer/Controls/MarginContainer/VBoxContainer/ScrollContainer/ActionList" instance=ExtResource("2_7cqap")]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_xkag2")
+theme_override_styles/hover = SubResource("StyleBoxFlat_o36jw")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_fovqp")
+
+[node name="InputButton7" parent="TabContainer/Controls/MarginContainer/VBoxContainer/ScrollContainer/ActionList" instance=ExtResource("2_7cqap")]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_xkag2")
+theme_override_styles/hover = SubResource("StyleBoxFlat_o36jw")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_fovqp")
+
+[node name="InputButton8" parent="TabContainer/Controls/MarginContainer/VBoxContainer/ScrollContainer/ActionList" instance=ExtResource("2_7cqap")]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_xkag2")
+theme_override_styles/hover = SubResource("StyleBoxFlat_o36jw")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_fovqp")
+
 [node name="DefaultsButton" type="Button" parent="TabContainer/Controls/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 8

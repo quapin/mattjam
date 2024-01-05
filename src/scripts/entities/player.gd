@@ -1,10 +1,11 @@
 extends CharacterBody2D
 
 # Player Variables
-@export var move_speed = DefaultVariables.baseSpeed # speed in pixels/sec
+@export var move_speed = DefaultPlayerStats.baseSpeed # speed in pixels/sec
 @export var dash_speed = 1800
 @export var dash_duration = 0.1
-@export var playerHealth = DefaultVariables.baseHealth
+@export var playerHealth = DefaultPlayerStats.baseHealth
+@export var playerClass = DefaultPlayerStats.playerClass
 
 # Node Call-ins
 @onready var dash = $Dash
@@ -18,6 +19,7 @@ extends CharacterBody2D
 
 func _ready():
 	upgrade()
+	loadData()
 
 func _process(delta):
 	
@@ -39,7 +41,7 @@ func _physics_process(delta):
 	
 	
 	# Test code for upgrades
-	if Input.is_action_just_pressed("Select"):
+	if Input.is_action_just_pressed("select"):
 		if UpgradesScript.speedUpgrade >= UpgradesScript.maxSpeedUpgrade:
 			print("You're at max speed")
 		else:
@@ -100,4 +102,10 @@ func upgrade():
 			move_speed = move_speed + 20
 		5: 
 			move_speed = move_speed + 20
+
+func loadData():
+	playerHealth = PlayerDataContainer.getPlayerHealth()
+	move_speed = PlayerDataContainer.getPlayerSpeed()
+	playerClass = PlayerDataContainer.getPlayerClass()
+	
 		

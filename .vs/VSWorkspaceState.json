@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\resources",
+    "\\src\\resources\\settings",
+    "\\src\\scripts",
+    "\\src\\scripts\\entities",
+    "\\src\\scripts\\globals",
+    "\\src\\scripts\\UI"
+  ],
+  "SelectedNode": "\\src\\scripts\\globals\\SaveManager.gd",
+  "PreviewInSolutionExplorer": false
+}

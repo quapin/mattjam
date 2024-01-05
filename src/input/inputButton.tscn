@@ -35,7 +35,7 @@ layout_mode = 2
 mouse_filter = 1
 theme_override_fonts/font = ExtResource("1_dv7wm")
 theme_override_font_sizes/font_size = 32
-text = "Input Action
+text = "Coming sometime
 "
 vertical_alignment = 1
 
@@ -49,6 +49,5 @@ layout_mode = 2
 mouse_filter = 1
 theme_override_fonts/font = ExtResource("1_dv7wm")
 theme_override_font_sizes/font_size = 32
-text = "Input Key
-"
+text = "not now tho"
 vertical_alignment = 1

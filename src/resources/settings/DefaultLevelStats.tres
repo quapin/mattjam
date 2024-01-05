@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="DefaultLevelStats" load_steps=2 format=3 uid="uid://cq1tkd0map311"]
+
+[ext_resource type="Script" path="res://src/resources/settings/LevelResource.gd" id="1_76al6"]
+
+[resource]
+script = ExtResource("1_76al6")

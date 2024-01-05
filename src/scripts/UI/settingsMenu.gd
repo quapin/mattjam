@@ -9,6 +9,9 @@ class_name Settings
 @onready var resolutionModeButton = $TabContainer/Video/MarginContainer/ScrollContainer/VBoxContainer/ResolutionModeButton/HBoxContainer/OptionButton
 @onready var scaleLabel = $TabContainer/Video/MarginContainer/ScrollContainer/VBoxContainer/ResolutionModeButton/ScaleSlider/ScaleLabel
 @onready var scaleSlider = $TabContainer/Video/MarginContainer/ScrollContainer/VBoxContainer/ResolutionModeButton/ScaleSlider
+@onready var fps = $TabContainer/Video/MarginContainer/ScrollContainer/VBoxContainer/FPSTab/FPS
+@onready var fpsButton = $TabContainer/Video/MarginContainer/ScrollContainer/VBoxContainer/FPSTab/HBoxContainer/OptionButton
+#@onready var actionLabel = buttonScene.instantiate().find_child("LabelAction")
 
 
 
@@ -28,8 +31,8 @@ const resolutionDictionary : Dictionary = {
 }
 
 var isRemapping = false
-var actionRemapping = null
-var keyRemapping = null
+var actionRemapping = "null"
+var keyRemapping = "null"
 var settingsClosed = true
 
 
@@ -41,23 +44,36 @@ var inputActions = {
 	"shoot": "Main Attack",
 	"dash": "Ability",
 	"select": "Select",
+	"pause" : "Pause"
 }
 
 func _ready():
 	addWindowModeItems()
 	addResolutionItems()
-	_create_action_list()
-	checkVars()
+	
+	
+	#setActionName()
+	#_create_action_list()
+	#checkVars()
+	loadData()
+	_on_option_button_toggled(SettingsDataContainer.getFPSToggled())
 	set_process(false)
+	#set_process_unhandled_key_input(false)
 	windowModeButton.item_selected.connect(onWindowModeSelected)
 	resolutionModeButton.item_selected.connect(onResolutionSelected)
-
-func checkVars():
-	var window = get_window()
-	var mode = window.get_mode()
 	
-	if mode == Window.MODE_EXCLUSIVE_FULLSCREEN:
-		windowModeButton.select(1)
+	#loadKeybinds()
+
+
+#func loadKeybinds():
+	#keyInput(SettingsDataContainer.getKeybinds(actionRemapping))
+
+
+#func checkVars():
+#	var window = get_window()
+#	var mode = window.get_mode()
+#	if mode == Window.MODE_EXCLUSIVE_FULLSCREEN:
+#		windowModeButton.select(1)
 
 func setResoultionText():
 	var resolutionText = str(get_window().get_size().x) + " x " + str(get_window().get_size().y)
@@ -72,7 +88,6 @@ func onWindowModeSelected(index : int):
 		0: # Windowed
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
-			DisplayServer.window_set_size(Vector2i(1280, 720))
 		1: # FullScreen
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
 			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
@@ -81,6 +96,7 @@ func onWindowModeSelected(index : int):
 			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, true)
 	setResoultionText()
 	centerWindow()
+	SettingsSignals.emit_onWindowModeSelected(index)
 	
 func addResolutionItems():
 	var currentResolution = get_window().get_size()
@@ -95,6 +111,7 @@ func addResolutionItems():
 		ID += 1
 
 func onResolutionSelected(index: int):
+	SettingsSignals.emit_onResolutionSelected(index)
 	DisplayServer.window_set_size(resolutionDictionary.values()[index])
 	centerWindow()
 	#var ID = resolutionModeButton.get_item_text(index)
@@ -105,64 +122,70 @@ func centerWindow():
 	var windowSize = get_window().get_size_with_decorations()
 	get_window().set_position(centerScreen - windowSize / 2)
 	
-func _create_action_list():
-	InputMap.load_from_project_settings()
-	for item in actionList.get_children():
-		item.queue_free()
-	
-	for action in inputActions:
-		var button = buttonScene.instantiate()
-		var actionLabel = button.find_child("LabelAction")
-		var inputLabel = button.find_child("LabelInput")
-		
-		actionLabel.text = inputActions[action]
-		
-		var events = InputMap.action_get_events(action)
-		if events.size() > 0:
-			inputLabel.text = events[0].as_text().trim_suffix(" (Physical)")
-		else:
-			inputLabel.text = ""
-			
-		actionList.add_child(button)
-		button.pressed.connect(_on_input_button_pressed.bind(button, action))
-		
-func _on_input_button_pressed(button, action):
-	if !isRemapping:
-		isRemapping = true
-		actionRemapping = action
-		keyRemapping = button
-		button.find_child("LabelInput").text = "Press key to bind..."
+#func _create_action_list():
+	#for item in actionList.get_children():
+		#item.queue_free()
+	#
+	#for action in inputActions:
+		#var button = buttonScene.instantiate()
+		#var actionLabel = button.find_child("LabelAction")
+		#var inputLabel = button.find_child("LabelInput")
+		##SettingsDataContainer.getKeybinds(action)
+		#
+		#actionLabel.text = inputActions[action]
+		#
+		#var events = InputMap.action_get_events(action)
+		#if events.size() > 0:
+			#inputLabel.text = events[0].as_text().trim_suffix(" (Physical)")
+		#else:
+			#inputLabel.text = ""
+			#
+		#actionList.add_child(button)
+		#button.pressed.connect(_on_input_button_pressed.bind(button, action))
+		#
 
-func _input(event):
-	if isRemapping:
-		if (event is InputEventKey || (event is InputEventMouseButton && event.pressed)):
-			if event is InputEventMouseButton && event.double_click:
-				event.double_click = false
-			
-			InputMap.action_erase_events(actionRemapping)
-			InputMap.action_add_event(actionRemapping, event)
-			_update_action_list(keyRemapping, event)
-			
-			isRemapping = false
-			actionRemapping = null
-			keyRemapping = null
-			
-			accept_event()
-			
-func _update_action_list(button, event):
-	button.find_child("LabelInput").text = event.as_text().trim_suffix(" (Physical)")
+
+
+
+#func _on_input_button_pressed(button, action):
+	#if !isRemapping:
+		#set_process_unhandled_key_input(true)
+		#isRemapping = true
+		#actionRemapping = action
+		#keyRemapping = button
+		#button.find_child("LabelInput").text = "Press key to bind..."
+	#else:
+		#set_process_unhandled_key_input(false)
+#
+#func _unhandled_key_input(event):
+	#keyInput(event)
+	#isRemapping = false
+	
 	
 
-
-func _on_defaults_button_pressed():
-	_create_action_list()
-
-
-
+##func keyInput(event):
+	##if isRemapping:
+	###	if event is InputEventMouseButton && event.double_click:
+	###		event.double_click = false
+				##
+			##
+		##InputMap.action_erase_events(actionRemapping)
+		##InputMap.action_add_event(actionRemapping, event)
+		##SettingsDataContainer.setKeybind(actionRemapping, event)
+		##_update_action_list(keyRemapping, event)
+			##
+##func _update_action_list(button, event):
+	##button.find_child("LabelInput").text = event.as_text().trim_suffix(" (Physical)")
+	#
+#
+#
+#func _on_defaults_button_pressed():
+	#_create_action_list()
 
 
 func _on_exit_pressed():
 	hide()
+	SettingsSignals.emit_setSettingsDictionary(SettingsDataContainer.createStorageDictionary())
 	$TabContainer.current_tab = 0
 	settingsClosed = true
 	set_process(false)
@@ -175,3 +198,20 @@ func _on_h_slider_value_changed(value):
 	scaleLabel.set_text(str(value) + "% - " + resolutionText)
 	
 	
+func _on_option_button_toggled(toggled_on):
+	SettingsSignals.emit_onFPSToggled(toggled_on)
+	if toggled_on:
+		fps.show()
+		fpsButton.button_pressed = true
+	else:
+		fps.hide()
+		fpsButton.button_pressed = false
+		
+func loadData():
+	onWindowModeSelected(SettingsDataContainer.getWindowModeIndex())
+	onResolutionSelected(SettingsDataContainer.getResolutionIndex())
+	windowModeButton.select(SettingsDataContainer.getWindowModeIndex())
+	resolutionModeButton.select(SettingsDataContainer.getResolutionIndex())
+	
+
+

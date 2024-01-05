@@ -1,0 +1,68 @@
+[gd_scene load_steps=6 format=3 uid="uid://03jk7i4ughol"]
+
+[ext_resource type="Script" path="res://src/characters/level.gd" id="1_v2350"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_u5mcy"]
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_lp3lp"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.321981, 0.721362, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.845479, 0.845479, 0.845479, 1, 0.876161, 0.876161, 0.876161, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_lyy0s"]
+gradient = SubResource("Gradient_lp3lp")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ctby8"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 42.31
+inherit_velocity_ratio = 0.249
+spread = 50.714
+initial_velocity_max = 52.91
+angular_velocity_min = 39.63
+angular_velocity_max = 245.35
+orbit_velocity_min = -0.33
+orbit_velocity_max = 0.571
+gravity = Vector3(0, 98, 0)
+scale_max = 7.0
+color = Color(1, 1, 0, 1)
+color_ramp = SubResource("GradientTexture1D_lyy0s")
+hue_variation_min = -0.01
+hue_variation_max = -0.01
+anim_speed_max = 6.01
+anim_offset_min = 0.1485
+anim_offset_max = 0.5095
+turbulence_enabled = true
+
+[node name="Level" type="Node2D"]
+position = Vector2(2, -2)
+script = ExtResource("1_v2350")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_u5mcy")
+position = Vector2(-1, 30)
+amount = 23
+process_material = SubResource("ParticleProcessMaterial_ctby8")
+speed_scale = 0.68
+explosiveness = 0.38
+randomness = 0.24
+interp_to_end = 0.116
+
+[node name="LineEdit" type="LineEdit" parent="."]
+offset_left = -68.0
+offset_top = -43.0
+offset_right = 70.0
+offset_bottom = -12.0
+placeholder_text = "Level Up! Level: 0"
+alignment = 1
+expand_to_text_length = true
+
+[node name="LevelTimer" type="Timer" parent="."]
+wait_time = 0.566
+one_shot = true
+
+[connection signal="timeout" from="LevelTimer" to="." method="_on_timer_timeout"]

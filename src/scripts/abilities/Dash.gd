@@ -8,6 +8,7 @@ const dash_delay = 0.2
 
 var ghost_scene = preload("res://src/characters/actions/dash_ghost.tscn")
 var sprite
+var can_dash = true
 
 func start_dash(sprite, duration):
 	# Whiten the dash ghost
@@ -46,9 +47,9 @@ func is_dashing():
 func end_dash():
 	$GhostTimer.stop()
 	
-	DefaultVariables.canDash = false
+	can_dash = false
 	await(get_tree().create_timer(dash_delay).timeout)
-	DefaultVariables.canDash = true
+	can_dash = true
 
 
 func _on_duration_timer_timeout() -> void:
